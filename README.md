@@ -29,6 +29,7 @@ Had to semi bodge the connections, but recieving both excpected ACKs now. Printe
 Successfully read and printed the ID register from the BMP280 sensor. I now have a method that can read data from a register within a device on the bus. 
 
 <img width="259" height="107" alt="image" src="https://github.com/user-attachments/assets/56f4b013-5824-47ff-b9cf-39ae391659a6" />
+
 ![image0 (3)](https://github.com/user-attachments/assets/c6ff878a-2048-4ee1-ae84-6dc851e9c0e6)
 
 
