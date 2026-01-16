@@ -1,5 +1,6 @@
 
 #include "bsp/log_backend.h"
+#include "bsp/clock_tree.h"
 #include "stm32f4xx.h"
 
 #ifndef LOG_UART_BAUD
@@ -69,31 +70,7 @@ static void log_uart_gpio_init( void ) {
 }
 
 static uint32_t log_get_pclk_hz( void ) {
-
-	// SystemCoreClock is HCLK when updated by CMSIS
-	uint32_t hclk = SystemCoreClock;
-
-	// AHB prescaler decode (HPRE bits)
-	static const uint32_t ahb_presc_table[16] = {
-			1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 8, 16, 64, 128, 256, 512
-	};
-
-	// APB1 prescaler decode (PPRE1 bits)
-	static const uint32_t apb_presc_table[8] = {
-			1, 1, 1, 1, 2, 4, 8, 16
-	};
-
-	uint32_t hpre = ( RCC->CFGR >> 4 ) & 0xFu;
-	uint32_t ppre = ( RCC->CFGR >> 10 ) & 0x7u;
-
-	uint32_t hclk_div  = ahb_presc_table[hpre];
-	uint32_t pclk1_div = apb_presc_table[ppre];
-
-	// SystemCoreClock likely equals HCLK, but included for robustness
-	uint32_t hclk_effective = hclk / hclk_div;
-
-	return ( hclk_effective / pclk1_div );
-
+	return ( clock_pclk1_hz() );
 }
 
 static void log_uart_periph_init( uint32_t baud ) {
