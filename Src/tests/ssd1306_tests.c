@@ -46,7 +46,7 @@ void ssd1306_test_turn_on( ssd1306_t *dev ) {
     }
 
     // 3) Draw something so you can visually confirm it woke up
-    (void) ssd1306_draw_str( dev, 0u, 0u, "YH IM NICKED", 1u );
+    (void) ssd1306_draw_str( dev, 0u, 0u, "OLED ON", 1u );
     st = ssd1306_flush( dev );
     if ( st != SSD1306_OK ) {
         log_str("SSD1306_TEST: flush FAILED\r\n");
