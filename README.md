@@ -19,7 +19,7 @@ Initialised a UART connection on GPIOA, using PA2 as TX and PA3 as RX. I connect
 Completed enough of the I2C driver to run a scan for addresses and send the details over UART to view in RealTerm. Set up so not only all the scanned addresses will print but also the last known status on I2C. This has helped a lot in debugging as the OLED responded fine but the BMP280 module was not. After some time I realised pressing the module down on the breadboard allowed for a successful connection and the device responded when probed. I will need to sort out connections then finish the I2C driver.
 
 ### 01/01/2026 Update
-Had to semi bodge the connections, but recieving both excpected ACKs now. Printed via UART on RealTerm as shown below. 
+Had to semi bodge the connections, but receiving both expected ACKs now. Printed via UART on RealTerm as shown below. 
 
 ![image0 (2)](https://github.com/user-attachments/assets/4c31584c-1566-460e-b2bc-6b3b46ed88ef)
 
@@ -35,7 +35,7 @@ Successfully read and printed the ID register from the BMP280 sensor. I now have
 ![image0 (3)](https://github.com/user-attachments/assets/c6ff878a-2048-4ee1-ae84-6dc851e9c0e6)
 
 ### 12/01/2028 Update
-I am working my way through developing the BMP280 driver, I was doing some testing and realised I was getting an I2C timeout error on every write. Using my UART debug logger I managed to zone in on the error, if i didn't laugh I would cry as it took me longer than I care to admit! Screenshot of the error below, I am sure you will see it immediately. My I2C driver is over 800 lines of code long so that is my excuse! 😂 
+I am working my way through developing the BMP280 driver, I was doing some testing and realised I was getting an I2C timeout error on every write. Using my UART debug logger I managed to zone in on the error, if I didn't laugh I would cry as it took me longer than I care to admit! Screenshot of the error below, I am sure you will see it immediately. My I2C driver is over 800 lines of code long so that is my excuse! 😂 
 
 <img width="521" height="133" alt="image" src="https://github.com/user-attachments/assets/9cefb6ba-1b0a-4af5-b93d-372553f540b7" />
 
@@ -45,25 +45,25 @@ Fixed below:
 
 #### Update 14/01/2026
 
-Measurements taken from raw values before compensate seem to be reading fine and changing with each test meaning changes in temp and pressure are being succesfully read from registers
+Measurements taken from raw values before compensate seem to be reading fine and changing with each test meaning changes in temp and pressure are being successfully read from registers
 
 <img width="458" height="308" alt="image" src="https://github.com/user-attachments/assets/8bbae2c5-03fe-484f-9759-970d3704407d" />
 
 #### Update 14/01/2026
 
-Compensate function working well, tried and tested with results formatted and printed over UART. Figures for temperature and pressure look believable. The final stages are now to create the OLED driver and bring it all together in a loop while taking advanatge of our timebase.
+Compensate function working well, tried and tested with results formatted and printed over UART. Figures for temperature and pressure look believable. The final stages are now to create the OLED driver and bring it all together in a loop while taking advantage of our timebase.
 
 <img width="294" height="193" alt="image" src="https://github.com/user-attachments/assets/e365f771-ebb4-4a08-8229-86c8e9c43fe3" />
 
 #### Update 15/01/2026
 
-Having a read through the datasheet of the OLED SSD1306 screen to try and dicipher how to place characters to display on it. There are libraries for this but it will be benificial to at least once go through the manual proccess of doing it myself.
+Having a read through the datasheet of the OLED SSD1306 screen to try and decipher how to place characters to display on it. There are libraries for this but it will be beneficial to at least once go through the manual process of doing it myself.
 
 <img width="707" height="900" alt="image" src="https://github.com/user-attachments/assets/64dd6ae9-7ac8-4ad5-837d-ae60648bd1e8" />
 
 #### Update 16/01/2026
 
-After initialy having issues getting the screen to turn on, I believe the issue was not initialising the device handler to zeros hence the charge pump bit was most likely set. So the screen was trying to use an external voltage which was not there. Anyhow.. I have tested the screen with making it all white! Very happy to see progress and I can almost taste the finishing line.
+After initially having issues getting the screen to turn on, I believe the issue was not initialising the device handler to zeros hence the charge pump bit was most likely set. So the screen was trying to use an external voltage which was not there. Anyhow.. I have tested the screen with making it all white! Very happy to see progress and I can almost taste the finishing line.
 
 ![image0 (4)](https://github.com/user-attachments/assets/bba30e50-9fd2-47a3-969a-25926fa0ea00)
 
